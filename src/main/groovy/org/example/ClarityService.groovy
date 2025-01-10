@@ -95,25 +95,40 @@ class ClarityService {
                     associatedTasks.each { task ->
                         println "Task: ${task.name}, Status: ${task.status}"
 
-                        // Prepare the task data with the internal project ID
-                        def taskData = [
-                                name     : task.name,
-                                _parentId: internalId,
-                                status   : task.status
+                        // Status lookup mapping
+                        def statusLookup = [
+                                'Not Started': [displayValue: 'Not Started', _type: 'lookup', id: '0'],   // Lookup object for 'Not Started'
+                                'In Progress': [displayValue: 'In Progress', _type: 'lookup', id: '1'],   // Lookup object for 'In Progress'
+                                'Completed'  : [displayValue: 'Completed', _type: 'lookup', id: '2']      // Lookup object for 'Completed'
                         ]
 
-                        // Construct the endpoint URL for the task
-                        String taskEndpoint = "/projects/${internalId}/tasks"
-                        println "Posting task to endpoint: ${taskEndpoint}, with data: ${taskData}"
+                        // Retrieve the status lookup object based on task's status
+                        def validStatus = statusLookup[task.status]
 
-                        RestResponse taskResponse = sendRequest('POST', taskEndpoint, taskData)
+                        if (validStatus) {
+                            // Prepare the task data with the internal project ID and the correct status object
+                            def taskData = [
+                                    name     : task.name,
+                                    _parentId: internalId,
+                                    status   : validStatus // Only send the valid status object
+                            ]
 
-                        println "Task creation response: ${taskResponse?.jsonMap()}"
+                            // Construct the endpoint URL for the task
+                            String taskEndpoint = "/projects/${internalId}/tasks"
+                            println "Posting task to endpoint: ${taskEndpoint}, with data: ${taskData}"
 
-                        if (taskResponse) {
-                            println "Task created successfully: ${taskData}"
+                            RestResponse taskResponse = sendRequest('POST', taskEndpoint, taskData)
+
+                            println "Task creation response: ${taskResponse?.jsonMap()}"
+
+                            // Correct status code comparison
+                            if (taskResponse) {
+                                println "Task created successfully: ${taskData}"
+                            } else {
+                                println "Failed to create task: ${taskData}. Response: ${taskResponse?.jsonMap()}"
+                            }
                         } else {
-                            println "Failed to create task: ${taskData}. Response: ${taskResponse?.jsonMap()}"
+                            println "Invalid status '${task.status}' for task '${task.name}'. Skipping task creation."
                         }
                     }
                 }
@@ -122,6 +137,55 @@ class ClarityService {
             }
         }
     }
+
+    static List<Map> getProjects() {
+        def allProjects = []
+        def offset = 0
+        def limit = 100 // You can adjust this based on the API's max page size
+
+        while (true) {
+            // Make the request with the pagination parameters
+            def response = sendRequest('GET', "/projects?offset=${offset}&limit=${limit}")
+
+            if (response?.jsonMap()) {
+                def projects = response.jsonMap()?._results
+                allProjects.addAll(projects.collect { project ->
+                    [
+                            id  : project._internalId,  // Access project._internalId
+                            code: project.code,         // Access project.code
+                            name: project.name,         // Access project.name
+                    ]
+                })
+
+                // Check if there are more results
+                if (projects.size() < limit) {
+                    break // No more pages, exit the loop
+                }
+                offset += limit // Move to the next set of projects
+            } else {
+                break // Exit the loop if the response is empty or invalid
+            }
+        }
+        return allProjects
+    }
+
+
+    static List<Map> getTasks(Integer projectId) {
+        def response = sendRequest('GET', "/projects/${projectId}/tasks")
+        if (response?.jsonMap()) {
+            return response.jsonMap()._results.collect { task ->  // Accessing the '_results' directly
+                [
+                        id: task._internalId,     // Accessing the property of each task directly
+                        code: task.code,
+                        project_id: task._parentId,
+                        name: task.name,
+                ]
+            }
+        }
+        return []
+    }
+
+
 }
 
 
