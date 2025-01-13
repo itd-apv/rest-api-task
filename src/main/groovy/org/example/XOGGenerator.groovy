@@ -11,6 +11,13 @@ class XOGGenerator {
 
     private static final Logger logger = LogManager.getLogger(XOGGenerator)
 
+    // Validate if a resource-task combination already exists to avoid duplicates
+    static boolean isDuplicateAssignment(List<Map> existingAssignments, Map assignment) {
+        return existingAssignments.any { existingAssignment ->
+            existingAssignment.resource_id == assignment.resource_id && existingAssignment.task_id == assignment.task_id
+        }
+    }
+
     // Generate XOG file for Resources using StringWriter
     static String generateResourcesXML(List<Map> resourcesData) {
         // Create a StringWriter to hold the generated XML
@@ -56,8 +63,14 @@ class XOGGenerator {
             logger.error("Failed to save file: {}", fileName, e)
         }
     }
-    // In XOGGenerator
-    static String generateAssignmentXOGXML(List<Map> resourcesData, List<Map> assignmentsData, List<Map> tasksData, List<Map> projectsData,List<Map> tasksFromClarity,List<Map> projectsFromClarity) {
+
+    static String generateAssignmentXOGXML(
+            List<Map> resourcesData,
+            List<Map> assignmentsData,
+            List<Map> tasksData,
+            List<Map> projectsData,
+            List<Map> filteredProjects) {
+
         // Create a StringWriter to hold the generated XML
         StringWriter writer = new StringWriter()
 
@@ -71,38 +84,81 @@ class XOGGenerator {
             xml.Header(action: 'write', externalSource: 'NIKU', objectType: 'project', version: '7.1.0.3023')
 
             xml.Projects {
-                // Loop through each resource and generate the XML structure
-                resourcesData.each { resource ->
-                    // Loop through the assignments
-                    assignmentsData.each { assignment ->
-                        // Find the task associated with the assignment using task_id
-                        def task = tasksData.find { it.id == assignment.task_id }
+                // Loop through each project and generate the XML for it
+                projectsData.each { project ->
+                    // Ensure the project is valid and matches the filtered projects
+                    def matchingProjectFromClarity = filteredProjects.find { it.name == project.name }
 
-                        // If task is found, find the corresponding project
-                        if (task) {
-                            // Fetch the project associated with the task (using task.project_id)
-                            def project = projectsData.find { it.id == task.project_id }
+                    if (matchingProjectFromClarity) {
+                        // Start the Project element
+                        xml.Project(projectID: matchingProjectFromClarity.code, name: project.name) {
+                            xml.Tasks {
+                                // Track tasks processed for the current project
+                                def processedTasks = new HashSet()
 
-                            // If project is found, generate the XML for the assignment
-                            if (project) {
-                                // Generate XML for each project-task assignment
-                                xml.Project(projectID: projectsFromClarity.code, name: project.name) {
-                                    xml.Tasks {
-                                        xml.Task(taskID: tasksFromClarity.code, outlineLevel: "1", name: task.name) {
-                                            xml.Assignments {
-                                                xml.TaskLabor(actualWork: assignment.actuals, baselineWork: "0",
-                                                        remainingWork: assignment.etc, resourceID: resource.resource_id) {
-                                                    xml.CustomInformation()
+                                // Loop through tasksData and create XML for tasks related to this project
+                                tasksData.findAll { it.project_id == project.id }.each { task ->
+                                    // Ensure the task has assignments
+                                    def taskAssignments = assignmentsData.findAll { it.task_id == task.id }
+
+                                    if (taskAssignments) {
+                                        // Only generate XML for tasks that haven't been processed yet
+                                        if (!processedTasks.contains(task.name)) {
+                                            processedTasks.add(task.name)
+
+                                            // Generate XML for the task and its assignments
+                                            xml.Task(outlineLevel: "1", name: task.name) {
+                                                xml.Assignments {
+                                                    // Loop through the assignment data and create TaskLabor tags
+                                                    def existingAssignments = [] // Stores the already processed assignments
+
+                                                    taskAssignments.each { assignment ->
+                                                        // Check for duplicate assignment
+                                                        if (isDuplicateAssignment(existingAssignments, assignment)) {
+                                                            // Log the duplicate and skip it
+                                                            logger.warn("Duplicate assignment skipped: ${assignment}")
+                                                            return // Skip the duplicate
+                                                        }
+
+                                                        // Add the current assignment to the list of processed ones
+                                                        existingAssignments << assignment
+
+                                                        // Debugging - log the assignment details
+                                                        logger.info("Processing assignment for task: ${task.name}, Assignment: ${assignment}")
+
+                                                        // Check if resource matches
+                                                        def resource = resourcesData.find { it.id.toString().trim() == assignment.resource_id.toString().trim() }
+
+                                                        if (resource) {
+                                                            // Debugging - log the resource match
+                                                            logger.info("Found matching resource for assignment: ${assignment.resource_id} -> ${resource.id}")
+
+                                                            // Add TaskLabor inside the Assignments tag
+                                                            xml.TaskLabor(
+                                                                    actualWork: assignment.actuals ?: "0",  // Ensure no null values
+                                                                    baselineWork: "0",  // Assuming baselineWork is "0" by default
+                                                                    remainingWork: assignment.etc ?: "0",  // Ensure no null values
+                                                                    resourceID: resource.id) {
+                                                                xml.CustomInformation()
+                                                            }
+                                                        } else {
+                                                            // If no matching resource, log this for debugging
+                                                            logger.warn("No matching resource for assignment: ${assignment}")
+                                                        }
+                                                    }
                                                 }
+                                                xml.CustomInformation()
                                             }
-                                            xml.CustomInformation()
                                         }
+                                    } else {
+                                        // Log if no assignments were found for the task
+                                        logger.info("No assignments found for task: ${task.name}")
                                     }
-                                    xml.Dependencies()
-                                    xml.CustomInformation()
-                                    xml.OBSAssocs()
                                 }
                             }
+                            xml.Dependencies()
+                            xml.CustomInformation()
+                            xml.OBSAssocs()
                         }
                     }
                 }
@@ -113,6 +169,7 @@ class XOGGenerator {
         return writer.toString()
     }
 }
+
 
 
 

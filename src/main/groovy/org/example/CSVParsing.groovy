@@ -63,19 +63,22 @@ class CSVParsing {
     // Parse the CSV lines into a list of maps and convert to JSON
     private List<Map> parseCSVLinesToJson(List<String> lines) {
         List<Map> data = []
-        def headers = lines[0].split(",") // Ignoring headers
+        def headers = lines[0].split(",") // Assuming the first row is the header
+
         lines[1..-1].each { line ->  // Iterate over each line after the header
             Map rowMap = [:]
             def values = line.split(",")
+
             headers.eachWithIndex { header, index ->
-                rowMap[header] = values[index]
+                // Use the value at the index if it exists, otherwise set it to null or empty
+                rowMap[header] = (index < values.size()) ? values[index] : null
             }
+
             // Add the rowMap to the data list
             data << rowMap
         }
         return data
     }
-
 
     // Method to read all 4 CSV files: projects, tasks, assignments, and resources
     List<Map> readProjectsCSV() {

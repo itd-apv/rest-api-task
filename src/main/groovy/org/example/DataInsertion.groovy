@@ -17,47 +17,54 @@ class DataInsertion {
             List<Map> tasksData = service.readTasksCSV()
             println "Tasks Data: ${tasksData}"
 
-            // Assuming you have resource data as well
+            // Process and generate XOGs (like before)
             List<Map> resourcesData = service.readResourcesCSV() // This method should read the resources CSV
             println "Resources Data: ${resourcesData}"
 
-            List<Map> projectsFromClarity = ClarityService.getProjects()
-            println "Projects Data from Clarity: ${projectsFromClarity}"
-
-            List<Map> tasksFromClarity = []
-            projectsFromClarity.each { project ->
-                // Get tasks for each project from Clarity
-                List<Map> tasksForProject = ClarityService.getTasks(project.id)
-                tasksFromClarity.addAll(tasksForProject)
-                println "Tasks for Project ${project.name} from Clarity: ${tasksForProject}"
-            }
-
-            // Generate XOG for Resources and print or save the XML to file
-            String resourcesXML = XOGGenerator.generateResourcesXML(resourcesData)
-            println "Generated Resources XOG XML:\n${resourcesXML}"
-
-             //Save resources XOG XML to file
-            XOGGenerator.saveToFile("resources_xog.xml", resourcesXML)
-
-            // Assuming you also have assignments data that needs to be processed
             List<Map> assignmentsData = service.readAssignmentsCSV() // This method should read the assignments CSV
             println "Assignments Data: ${assignmentsData}"
 
+            //Post projects and tasks to Clarity
+            //postProjectsAndTasksToClarity(projectsData, tasksData)
+
+            // Get project names from CSV for filtering
+            List<String> projectNamesFromCSV = projectsData.collect { it.name }
+
+            // Get task names from CSV for filtering
+            List<String> taskNamesFromCSV = tasksData.collect { it.name }
+
+            // Fetch projects and tasks from Clarity, filtered by CSV data
+            List<Map> filteredProjects = ClarityService.getProjects(projectNamesFromCSV)
+            println "Filtered Projects from Clarity: ${filteredProjects}"
+
+            List<Map> filteredTasks = []
+            filteredProjects.each { project ->
+                // Get tasks for each filtered project from Clarity
+                List<Map> tasksForProject = ClarityService.getTasks(project.id, taskNamesFromCSV)
+                filteredTasks.addAll(tasksForProject)
+                println "Filtered Tasks for Project ${project.name} from Clarity: ${tasksForProject}"
+            }
+
             // Generate XOG for Assignments and print or save the XML to file
-            String assignmentsXML = XOGGenerator.generateAssignmentXOGXML(resourcesData, assignmentsData, tasksData, projectsData,tasksFromClarity, projectsFromClarity)
+            String assignmentsXML = XOGGenerator.generateAssignmentXOGXML(resourcesData, assignmentsData, tasksData, projectsData,filteredProjects)
             println "Generated Assignments XOG XML:\n${assignmentsXML}"
 
             // Save assignments XOG XML to file
             XOGGenerator.saveToFile("assignments_xog.xml", assignmentsXML)
 
-             //Post projects and tasks to Clarity
-            //postProjectsAndTasksToClarity(projectsData, tasksData)
+            String xmlData = new File("assignments_xog.xml").text // Reading the XML file generated above
+            ClarityService.postTeamsWithResources(xmlData)  // Call the method to post teams with resources
+            logger.info("Posted resources as teams to Clarity PPM successfully.")
+
+
+
 
         } catch (Exception e) {
             logger.error("Error reading CSV files: {}", e.message)
             e.printStackTrace()
         }
     }
+
 
      //Method to post projects and their associated tasks to Clarity
     static void postProjectsAndTasksToClarity(List<Map> projectsData, List<Map> tasksData) {
