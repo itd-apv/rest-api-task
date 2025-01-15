@@ -12,6 +12,7 @@ class XOGGenerator {
 
     // Validate if a resource-task combination already exists to avoid duplicates
     static boolean isDuplicateAssignment(List<Map> existingAssignments, Map assignment) {
+        logger.debug("Checking if assignment is duplicate: {}", assignment)
         return existingAssignments.any { existingAssignment ->
             existingAssignment.resource_id == assignment.resource_id && existingAssignment.task_id == assignment.task_id
         }
@@ -25,6 +26,7 @@ class XOGGenerator {
         // Create the MarkupBuilder with the StringWriter
         def xml = new MarkupBuilder(writer)
 
+        logger.info("Generating Resources XOG XML...")
         // Define the XML structure with the necessary namespaces and schema
         xml.NikuDataBus('xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
                 'xsi:noNamespaceSchemaLocation': '../xsd/nikuxog_resource.xsd') {
@@ -38,6 +40,7 @@ class XOGGenerator {
                     def firstName = nameParts[0]
                     def lastName = nameParts.size() > 1 ? nameParts[1] : ''
 
+                    logger.debug("Creating XML for resource: {}", resource.name)
                     xml.Resource(resourceId: resource.id, isActive: resource.is_active.toString().toLowerCase(),
                             employmentType: "Employee", resourceType: "LABOR", externalId: "2323AAA") {
                         xml.PersonalInformation(lastName: lastName, firstName: firstName, emailAddress: resource.email)
@@ -45,8 +48,7 @@ class XOGGenerator {
                 }
             }
         }
-
-        // Return the generated XML as a string
+        logger.info("Generated Resources XOG XML successfully.")
         return writer.toString()
     }
 
@@ -76,6 +78,7 @@ class XOGGenerator {
         // Create the MarkupBuilder with the StringWriter
         def xml = new MarkupBuilder(writer)
 
+        logger.info("Generating Assignment XOG XML...")
         // Define the XML structure with the necessary namespaces and schema
         xml.NikuDataBus('xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
                 'xsi:noNamespaceSchemaLocation': '../xsd/nikuxog_project.xsd') {
@@ -105,6 +108,8 @@ class XOGGenerator {
                                         if (!processedTasks.contains(task.name)) {
                                             processedTasks.add(task.name)
 
+                                            logger.debug("Generating XML for task: {}", task.name)
+
                                             // Generate XML for the task and its assignments
                                             xml.Task(taskID: task.id, outlineLevel: "1", name: task.name) {
                                                 xml.Assignments {
@@ -123,9 +128,7 @@ class XOGGenerator {
                                                         // Add the current assignment to the list of processed ones
                                                         existingAssignments << assignment
 
-                                                        // Debugging - log the assignment details
                                                         logger.info("Processing assignment for task: ${task.name}, Assignment: ${assignment}")
-
                                                         // Check if resource matches
                                                         def resource = resourcesData.find { it.id.toString().trim() == assignment.resource_id.toString().trim() }
 
@@ -164,8 +167,8 @@ class XOGGenerator {
                 }
             }
         }
-
         // Return the generated XML as a string
+        logger.info("Generated Assignment XOG XML successfully.")
         return writer.toString()
     }
 }

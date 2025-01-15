@@ -5,11 +5,15 @@ import de.itdesign.clarity.rest.ClarityRestClient
 import de.itdesign.clarity.rest.RestResponse
 import groovy.json.JsonBuilder
 import groovy.xml.XmlParser
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 
 import java.sql.Connection
 import java.sql.DriverManager
 
 class ClarityService {
+
+    private static final Logger logger = LogManager.getLogger(ClarityService)
 
     // Static variable to hold the database connection and SQL object
     static Connection connection
@@ -22,12 +26,12 @@ class ClarityService {
             String username = "niku"
             String password = "niku"
             try {
-                println "Attempting to connect to the database..."
+                logger.info("Attempting to connect to the database...")
                 connection = DriverManager.getConnection(jdbcurl, username, password)
                 sql = new Sql(connection)  // Reusing the connection to create a Sql object
-                println "Database connection successful."
+                logger.info("Database connection successful.")
             } catch (Exception e) {
-                println "Caught exception: ${e.message}"
+                logger.error("Caught exception: ${e.message}", e)
                 e.printStackTrace()
             }
         }
@@ -55,9 +59,9 @@ class ClarityService {
                 response = rest.GET(endpoint)
             }
 
-            println "Response: ${response?.jsonMap()}"
+            logger.info("Response: ${response?.jsonMap()}")
         } catch (Exception e) {
-            println "Caught exception: ${e.message}"
+            logger.error("Caught exception: ${e.message}", e)
             e.printStackTrace()
         } finally {
             rest?.close()
@@ -79,20 +83,20 @@ class ClarityService {
             ]
 
             // Post the project data to the /projects endpoint
-            println "Posting project: ${projectData}"
+            logger.info("Posting project: ${projectData}")
             RestResponse projectResponse = sendRequest('POST', '/projects', projectData)
 
             if (projectResponse?.jsonMap()?._internalId) {
                 def internalId = projectResponse.jsonMap()?._internalId
-                println "Project created with internal ID: ${internalId}"
+                logger.info("Project created with internal ID: ${internalId}")
 
                 // Find tasks associated with this project based on project.id
                 def associatedTasks = tasks.findAll { it.project_id == project.id }
 
-                println "Associated tasks for project ${project.name} (ID: ${project.id}): ${associatedTasks}"
+                logger.info("Associated tasks for project ${project.name} (ID: ${project.id}): ${associatedTasks}")
 
                 if (associatedTasks.isEmpty()) {
-                    println "No tasks found for project ${project.name} (ID: ${project.id})"
+                    logger.info("No tasks found for project ${project.name} (ID: ${project.id})")
                 } else {
                     // Maintain a set of task names that have already been posted
                     def postedTaskNames = []
@@ -100,9 +104,10 @@ class ClarityService {
                     associatedTasks.each { task ->
                         if (postedTaskNames.contains(task.name)) {
                             // Skip task if it has already been posted
-                            println "Skipping task '${task.name}' as it has already been posted."
+                            logger.info("Skipping task '${task.name}' as it has already been posted.")
                         } else {
-                            println "Task: ${task.name}, Status: ${task.status}"
+                            logger.info("Task: ${task.name}, Status: ${task.status}")
+
 
                             // Status lookup mapping
                             def statusLookup = [
@@ -125,27 +130,27 @@ class ClarityService {
 
                                 // Construct the endpoint URL for the task
                                 String taskEndpoint = "/projects/${internalId}/tasks"
-                                println "Posting task to endpoint: ${taskEndpoint}, with data: ${taskData}"
+                                logger.info("Posting task to endpoint: ${taskEndpoint}, with data: ${taskData}")
 
                                 RestResponse taskResponse = sendRequest('POST', taskEndpoint, taskData)
 
-                                println "Task creation response: ${taskResponse?.jsonMap()}"
+                                logger.info("Task creation response: ${taskResponse?.jsonMap()}")
 
                                 if (taskResponse) {
                                     // Mark task as posted by adding it to the set
                                     postedTaskNames.add(task.name)
-                                    println "Task created successfully: ${taskData}"
+                                    logger.info("Task created successfully: ${taskData}")
                                 } else {
-                                    println "Failed to create task: ${taskData}. Response: ${taskResponse?.jsonMap()}"
+                                    logger.error("Failed to create task: ${taskData}. Response: ${taskResponse?.jsonMap()}")
                                 }
                             } else {
-                                println "Invalid status '${task.status}' for task '${task.name}'. Skipping task creation."
+                                logger.warn("Invalid status '${task.status}' for task '${task.name}'. Skipping task creation.")
                             }
                         }
                     }
                 }
             } else {
-                println "Failed to create project: ${projectData}. Response: ${projectResponse?.jsonMap()}"
+                logger.error("Failed to create project: ${projectData}. Response: ${projectResponse?.jsonMap()}")
             }
         }
     }
@@ -210,7 +215,6 @@ class ClarityService {
         }
     }
 
-    // Method to post teams with resources (mapping projects and resources, then posting teams)
     static void postTeamsWithResources(String xmlData) {
         getDBConnection()  // Ensure the connection is established
 
@@ -234,16 +238,16 @@ class ClarityService {
 
                         if (resourceDetails) {
                             def teamData = [
-                                    resource : resourceDetails.id
+                                    resource: resourceDetails.id
                             ]
 
                             // Post the team assignment to the Clarity API
                             RestResponse response = postTeamToClarity("/projects/${internalId}/teams", teamData)
 
                             if (response?.jsonMap()) {
-                                println "Successfully added resource to project team: ${teamData}"
+                                logger.info("Successfully added resource ${resourceDetails.code} to project ${projectId} team.")
                             } else {
-                                println "Failed to add resource to project team: ${teamData}. Response: ${response?.jsonMap()}"
+                                logger.error("Failed to add resource ${resourceDetails.code} to project ${projectId} team. Response: ${response?.jsonMap()}")
                             }
                         }
                     }
@@ -256,15 +260,15 @@ class ClarityService {
         RestResponse response = sendRequest('POST', taskEndpoint, teamData)
 
         if (response?.jsonMap()) {
-            println "Successfully posted team data: ${teamData}"
+            logger.info("Successfully posted team data: ${teamData}")
         } else {
-            println "Failed to post team data: ${teamData}. Response: ${response?.jsonMap()}"
+            logger.error("Failed to post team data: ${teamData}. Response: ${response?.jsonMap()}")
         }
 
         return response
     }
 
-    // Method to retrieve resource id and code from the database using resource code
+// Method to retrieve resource id and code from the database using resource code
     static Map getResourceDetails(String resourceCode) {
         getDBConnection()  // Ensure the connection is established
 
@@ -274,7 +278,7 @@ class ClarityService {
         if (resource) {
             return [id: resource.ID, code: resource.UNIQUE_NAME]
         } else {
-            println "Resource with code ${resourceCode} not found in the database."
+            logger.error("Resource with code ${resourceCode} not found in the database.")
             return null
         }
     }
