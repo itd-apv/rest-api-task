@@ -8,7 +8,6 @@ import java.nio.file.Paths
 
 class XOGGenerator {
 
-
     private static final Logger logger = LogManager.getLogger(XOGGenerator)
 
     // Validate if a resource-task combination already exists to avoid duplicates
@@ -107,10 +106,11 @@ class XOGGenerator {
                                             processedTasks.add(task.name)
 
                                             // Generate XML for the task and its assignments
-                                            xml.Task(outlineLevel: "1", name: task.name) {
+                                            xml.Task(taskID: task.id, outlineLevel: "1", name: task.name) {
                                                 xml.Assignments {
                                                     // Loop through the assignment data and create TaskLabor tags
-                                                    def existingAssignments = [] // Stores the already processed assignments
+                                                    def existingAssignments = []
+                                                    // Stores the already processed assignments
 
                                                     taskAssignments.each { assignment ->
                                                         // Check for duplicate assignment
