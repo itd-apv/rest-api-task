@@ -8,11 +8,9 @@ import java.nio.file.Paths
 
 class XOGGenerator {
 
-    private static final Logger logger = LogManager.getLogger(XOGGenerator)
-
     // Validate if a resource-task combination already exists to avoid duplicates
     static boolean isDuplicateAssignment(List<Map> existingAssignments, Map assignment) {
-        logger.debug("Checking if assignment is duplicate: {}", assignment)
+        println("Checking if assignment is duplicate: ${assignment}")
         return existingAssignments.any { existingAssignment ->
             existingAssignment.resource_id == assignment.resource_id && existingAssignment.task_id == assignment.task_id
         }
@@ -26,7 +24,7 @@ class XOGGenerator {
         // Create the MarkupBuilder with the StringWriter
         def xml = new MarkupBuilder(writer)
 
-        logger.info("Generating Resources XOG XML...")
+        println("Generating Resources XOG XML...")
         // Define the XML structure with the necessary namespaces and schema
         xml.NikuDataBus('xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
                 'xsi:noNamespaceSchemaLocation': '../xsd/nikuxog_resource.xsd') {
@@ -40,7 +38,7 @@ class XOGGenerator {
                     def firstName = nameParts[0]
                     def lastName = nameParts.size() > 1 ? nameParts[1] : ''
 
-                    logger.debug("Creating XML for resource: {}", resource.name)
+                    println("Creating XML for resource: ${resource.name}")
                     xml.Resource(resourceId: resource.id, isActive: resource.is_active.toString().toLowerCase(),
                             employmentType: "Employee", resourceType: "LABOR", externalId: "2323AAA") {
                         xml.PersonalInformation(lastName: lastName, firstName: firstName, emailAddress: resource.email)
@@ -48,20 +46,21 @@ class XOGGenerator {
                 }
             }
         }
-        logger.info("Generated Resources XOG XML successfully.")
+        println("Generated Resources XOG XML successfully.")
         return writer.toString()
     }
 
     // Method to save the generated XML to a file
     static void saveToFile(String fileName, String content) {
-        logger.info("Saving XOG XML to file: {}", fileName)
+        println("Saving XOG XML to file: ${fileName}")
 
         try {
             // Save the content to the specified file
             Files.write(Paths.get(fileName), content.bytes)
-            logger.info("File saved successfully: {}", fileName)
+            println("File saved successfully: ${fileName}")
         } catch (IOException e) {
-            logger.error("Failed to save file: {}", fileName, e)
+            println("Failed to save file: ${fileName}")
+            e.printStackTrace()
         }
     }
 
@@ -78,7 +77,7 @@ class XOGGenerator {
         // Create the MarkupBuilder with the StringWriter
         def xml = new MarkupBuilder(writer)
 
-        logger.info("Generating Assignment XOG XML...")
+        println("Generating Assignment XOG XML...")
         // Define the XML structure with the necessary namespaces and schema
         xml.NikuDataBus('xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
                 'xsi:noNamespaceSchemaLocation': '../xsd/nikuxog_project.xsd') {
@@ -108,7 +107,7 @@ class XOGGenerator {
                                         if (!processedTasks.contains(task.name)) {
                                             processedTasks.add(task.name)
 
-                                            logger.debug("Generating XML for task: {}", task.name)
+                                            println("Generating XML for task: ${task.name}")
 
                                             // Generate XML for the task and its assignments
                                             xml.Task(taskID: task.id, outlineLevel: "1", name: task.name) {
@@ -121,20 +120,20 @@ class XOGGenerator {
                                                         // Check for duplicate assignment
                                                         if (isDuplicateAssignment(existingAssignments, assignment)) {
                                                             // Log the duplicate and skip it
-                                                            logger.warn("Duplicate assignment skipped: ${assignment}")
+                                                            println("Duplicate assignment skipped: ${assignment}")
                                                             return // Skip the duplicate
                                                         }
 
                                                         // Add the current assignment to the list of processed ones
                                                         existingAssignments << assignment
 
-                                                        logger.info("Processing assignment for task: ${task.name}, Assignment: ${assignment}")
+                                                        println("Processing assignment for task: ${task.name}, Assignment: ${assignment}")
                                                         // Check if resource matches
                                                         def resource = resourcesData.find { it.id.toString().trim() == assignment.resource_id.toString().trim() }
 
                                                         if (resource) {
                                                             // Debugging - log the resource match
-                                                            logger.info("Found matching resource for assignment: ${assignment.resource_id} -> ${resource.id}")
+                                                            println("Found matching resource for assignment: ${assignment.resource_id} -> ${resource.id}")
 
                                                             // Add TaskLabor inside the Assignments tag
                                                             xml.TaskLabor(
@@ -146,7 +145,7 @@ class XOGGenerator {
                                                             }
                                                         } else {
                                                             // If no matching resource, log this for debugging
-                                                            logger.warn("No matching resource for assignment: ${assignment}")
+                                                            println("No matching resource for assignment: ${assignment}")
                                                         }
                                                     }
                                                 }
@@ -155,7 +154,7 @@ class XOGGenerator {
                                         }
                                     } else {
                                         // Log if no assignments were found for the task
-                                        logger.info("No assignments found for task: ${task.name}")
+                                        println("No assignments found for task: ${task.name}")
                                     }
                                 }
                             }
@@ -168,7 +167,7 @@ class XOGGenerator {
             }
         }
         // Return the generated XML as a string
-        logger.info("Generated Assignment XOG XML successfully.")
+        println("Generated Assignment XOG XML successfully.")
         return writer.toString()
     }
 }
