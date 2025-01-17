@@ -1,0 +1,95 @@
+<NikuDataBus xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../xsd/nikuxog_resource.xsd'>
+  <Header version='6.0.12' action='write' objectType='resource' externalSource='ORACLE-FINANCIAL' />
+  <Resources>
+    <Resource resourceId='RES01' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Doe' firstName='John' emailAddress='john.doe@example.com' />
+    </Resource>
+    <Resource resourceId='RES02' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Smith' firstName='Jane' emailAddress='jane.smith@example.com' />
+    </Resource>
+    <Resource resourceId='RES03' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Johnson' firstName='Emily' emailAddress='emily.johnson@example.com' />
+    </Resource>
+    <Resource resourceId='RES04' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Brown' firstName='Michael' emailAddress='michael.brown@example.com' />
+    </Resource>
+    <Resource resourceId='RES05' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Lee' firstName='Christopher' emailAddress='christopher.lee@example.com' />
+    </Resource>
+    <Resource resourceId='RES06' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='White' firstName='Sarah' emailAddress='sarah.white@example.com' />
+    </Resource>
+    <Resource resourceId='RES07' isActive='false' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Harris' firstName='Robert' emailAddress='robert.harris@example.com' />
+    </Resource>
+    <Resource resourceId='RES08' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='King' firstName='Alice' emailAddress='alice.king@example.com' />
+    </Resource>
+    <Resource resourceId='RES09' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Green' firstName='James' emailAddress='james.green@example.com' />
+    </Resource>
+    <Resource resourceId='RES10' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Scott' firstName='Olivia' emailAddress='olivia.scott@example.com' />
+    </Resource>
+    <Resource resourceId='RES11' isActive='false' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Young' firstName='Benjamin' emailAddress='benjamin.young@example.com' />
+    </Resource>
+    <Resource resourceId='RES12' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Adams' firstName='Linda' emailAddress='linda.adams@example.com' />
+    </Resource>
+    <Resource resourceId='RES13' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Nelson' firstName='David' emailAddress='david.nelson@example.com' />
+    </Resource>
+    <Resource resourceId='RES14' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Carter' firstName='Emma' emailAddress='emma.carter@example.com' />
+    </Resource>
+    <Resource resourceId='RES15' isActive='false' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Wright' firstName='Lucas' emailAddress='lucas.wright@example.com' />
+    </Resource>
+    <Resource resourceId='RES16' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Turner' firstName='Sophia' emailAddress='sophia.turner@example.com' />
+    </Resource>
+    <Resource resourceId='RES17' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Walker' firstName='Daniel' emailAddress='daniel.walker@example.com' />
+    </Resource>
+    <Resource resourceId='RES18' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Lewis' firstName='Grace' emailAddress='grace.lewis@example.com' />
+    </Resource>
+    <Resource resourceId='RES19' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Roberts' firstName='Ethan' emailAddress='ethan.roberts@example.com' />
+    </Resource>
+    <Resource resourceId='RES20' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Hill' firstName='Chloe' emailAddress='chloe.hill@example.com' />
+    </Resource>
+    <Resource resourceId='RES21' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Clark' firstName='Alexander' emailAddress='alexander.clark@example.com' />
+    </Resource>
+    <Resource resourceId='RES22' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Mitchell' firstName='Lily' emailAddress='lily.mitchell@example.com' />
+    </Resource>
+    <Resource resourceId='RES23' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Baker' firstName='Jacob' emailAddress='jacob.baker@example.com' />
+    </Resource>
+    <Resource resourceId='RES24' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Martinez' firstName='Ava' emailAddress='ava.martinez@example.com' />
+    </Resource>
+    <Resource resourceId='RES25' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Davis' firstName='Mason' emailAddress='mason.davis@example.com' />
+    </Resource>
+    <Resource resourceId='RES26' isActive='false' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Lopez' firstName='Isabella' emailAddress='isabella.lopez@example.com' />
+    </Resource>
+    <Resource resourceId='RES27' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Rodriguez' firstName='Elijah' emailAddress='elijah.rodriguez@example.com' />
+    </Resource>
+    <Resource resourceId='RES28' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Evans' firstName='Charlotte' emailAddress='charlotte.evans@example.com' />
+    </Resource>
+    <Resource resourceId='RES29' isActive='true' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Moore' firstName='William' emailAddress='william.moore@example.com' />
+    </Resource>
+    <Resource resourceId='RES30' isActive='false' employmentType='Employee' resourceType='LABOR' externalId='2323AAA'>
+      <PersonalInformation lastName='Phillips' firstName='Ella' emailAddress='ella.phillips@example.com' />
+    </Resource>
+  </Resources>
+</NikuDataBus>
