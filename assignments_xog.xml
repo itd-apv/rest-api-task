@@ -1,0 +1,802 @@
+<NikuDataBus xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../xsd/nikuxog_project.xsd'>
+  <Header action='write' externalSource='NIKU' objectType='project' version='7.1.0.3023' />
+  <Projects>
+    <Project projectID='PR2736' name='Project A'>
+      <Tasks>
+        <Task taskID='6' outlineLevel='1' name='Task 6'>
+          <Assignments>
+            <TaskLabor resourceID='RES09'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES10'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='19' outlineLevel='1' name='Task 19'>
+          <Assignments>
+            <TaskLabor resourceID='RES19'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES06'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='48' outlineLevel='1' name='Task 48'>
+          <Assignments>
+            <TaskLabor resourceID='RES16'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES03'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='49' outlineLevel='1' name='Task 49'>
+          <Assignments>
+            <TaskLabor resourceID='RES18'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES11'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2737' name='Project B'>
+      <Tasks>
+        <Task taskID='5' outlineLevel='1' name='Task 5'>
+          <Assignments>
+            <TaskLabor resourceID='RES25'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES09'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='14' outlineLevel='1' name='Task 14'>
+          <Assignments>
+            <TaskLabor resourceID='RES15'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES20'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='47' outlineLevel='1' name='Task 47'>
+          <Assignments>
+            <TaskLabor resourceID='RES02'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES18'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2738' name='Project C'>
+      <Tasks>
+        <Task taskID='4' outlineLevel='1' name='Task 4'>
+          <Assignments>
+            <TaskLabor resourceID='RES15'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES05'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='18' outlineLevel='1' name='Task 18'>
+          <Assignments>
+            <TaskLabor resourceID='RES07'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES13'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='30' outlineLevel='1' name='Task 30'>
+          <Assignments>
+            <TaskLabor resourceID='RES18'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES07'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='46' outlineLevel='1' name='Task 46'>
+          <Assignments>
+            <TaskLabor resourceID='RES13'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES19'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2739' name='Project D'>
+      <Tasks>
+        <Task taskID='32' outlineLevel='1' name='Task 32'>
+          <Assignments>
+            <TaskLabor resourceID='RES11'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES03'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='33' outlineLevel='1' name='Task 33'>
+          <Assignments>
+            <TaskLabor resourceID='RES03'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES11'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2740' name='Project E'>
+      <Tasks>
+        <Task taskID='13' outlineLevel='1' name='Task 13'>
+          <Assignments>
+            <TaskLabor resourceID='RES12'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES17'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='34' outlineLevel='1' name='Task 34'>
+          <Assignments>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES06'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='57' outlineLevel='1' name='Task 57'>
+          <Assignments>
+            <TaskLabor resourceID='RES14'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES16'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2741' name='Project F'>
+      <Tasks>
+        <Task taskID='2' outlineLevel='1' name='Task 2'>
+          <Assignments>
+            <TaskLabor resourceID='RES16'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES10'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='3' outlineLevel='1' name='Task 3'>
+          <Assignments>
+            <TaskLabor resourceID='RES08'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='29' outlineLevel='1' name='Task 29'>
+          <Assignments>
+            <TaskLabor resourceID='RES16'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES05'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='50' outlineLevel='1' name='Task 50'>
+          <Assignments>
+            <TaskLabor resourceID='RES14'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES06'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2742' name='Project G'>
+      <Tasks>
+        <Task taskID='15' outlineLevel='1' name='Task 15'>
+          <Assignments>
+            <TaskLabor resourceID='RES10'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES20'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='58' outlineLevel='1' name='Task 58'>
+          <Assignments>
+            <TaskLabor resourceID='RES04'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES02'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2743' name='Project H'>
+      <Tasks>
+        <Task taskID='23' outlineLevel='1' name='Task 23'>
+          <Assignments>
+            <TaskLabor resourceID='RES19'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES03'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='51' outlineLevel='1' name='Task 51'>
+          <Assignments>
+            <TaskLabor resourceID='RES13'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES17'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='52' outlineLevel='1' name='Task 52'>
+          <Assignments>
+            <TaskLabor resourceID='RES18'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES02'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2744' name='Project I'>
+      <Tasks>
+        <Task taskID='31' outlineLevel='1' name='Task 31'>
+          <Assignments>
+            <TaskLabor resourceID='RES07'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES16'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='53' outlineLevel='1' name='Task 53'>
+          <Assignments>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES04'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='59' outlineLevel='1' name='Task 59'>
+          <Assignments>
+            <TaskLabor resourceID='RES12'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES10'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2745' name='Project J'>
+      <Tasks>
+        <Task taskID='24' outlineLevel='1' name='Task 24'>
+          <Assignments>
+            <TaskLabor resourceID='RES08'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES02'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='54' outlineLevel='1' name='Task 54'>
+          <Assignments>
+            <TaskLabor resourceID='RES09'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES04'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2746' name='Project K'>
+      <Tasks>
+        <Task taskID='20' outlineLevel='1' name='Task 20'>
+          <Assignments>
+            <TaskLabor resourceID='RES03'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES06'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='28' outlineLevel='1' name='Task 28'>
+          <Assignments>
+            <TaskLabor resourceID='RES13'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='39' outlineLevel='1' name='Task 39'>
+          <Assignments>
+            <TaskLabor resourceID='RES09'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES19'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2747' name='Project L'>
+      <Tasks>
+        <Task taskID='1' outlineLevel='1' name='Task 1'>
+          <Assignments>
+            <TaskLabor resourceID='RES05'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES08'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='7' outlineLevel='1' name='Task 7'>
+          <Assignments>
+            <TaskLabor resourceID='RES20'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES19'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='8' outlineLevel='1' name='Task 8'>
+          <Assignments>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES20'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='35' outlineLevel='1' name='Task 35'>
+          <Assignments>
+            <TaskLabor resourceID='RES20'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES11'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='60' outlineLevel='1' name='Task 60'>
+          <Assignments>
+            <TaskLabor resourceID='RES07'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES18'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2748' name='Project M'>
+      <Tasks>
+        <Task taskID='10' outlineLevel='1' name='Task 10'>
+          <Assignments>
+            <TaskLabor resourceID='RES07'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES16'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='21' outlineLevel='1' name='Task 21'>
+          <Assignments>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES14'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='37' outlineLevel='1' name='Task 37'>
+          <Assignments>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES08'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2749' name='Project N'>
+      <Tasks>
+        <Task taskID='16' outlineLevel='1' name='Task 16'>
+          <Assignments>
+            <TaskLabor resourceID='RES14'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES17'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='42' outlineLevel='1' name='Task 42'>
+          <Assignments>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES19'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2750' name='Project O'>
+      <Tasks>
+        <Task taskID='22' outlineLevel='1' name='Task 22'>
+          <Assignments>
+            <TaskLabor resourceID='RES11'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES03'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='40' outlineLevel='1' name='Task 40'>
+          <Assignments>
+            <TaskLabor resourceID='RES10'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES08'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='41' outlineLevel='1' name='Task 41'>
+          <Assignments>
+            <TaskLabor resourceID='RES08'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES02'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2751' name='Project P'>
+      <Tasks>
+        <Task taskID='38' outlineLevel='1' name='Task 38'>
+          <Assignments>
+            <TaskLabor resourceID='RES06'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES12'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2752' name='Project Q'>
+      <Tasks>
+        <Task taskID='11' outlineLevel='1' name='Task 11'>
+          <Assignments>
+            <TaskLabor resourceID='RES15'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES05'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='12' outlineLevel='1' name='Task 12'>
+          <Assignments>
+            <TaskLabor resourceID='RES09'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES12'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2753' name='Project R'>
+      <Tasks>
+        <Task taskID='26' outlineLevel='1' name='Task 26'>
+          <Assignments>
+            <TaskLabor resourceID='RES15'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES14'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='43' outlineLevel='1' name='Task 43'>
+          <Assignments>
+            <TaskLabor resourceID='RES12'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES03'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2754' name='Project S'>
+      <Tasks>
+        <Task taskID='9' outlineLevel='1' name='Task 9'>
+          <Assignments>
+            <TaskLabor resourceID='RES12'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES01'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='27' outlineLevel='1' name='Task 27'>
+          <Assignments>
+            <TaskLabor resourceID='RES09'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES15'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='44' outlineLevel='1' name='Task 44'>
+          <Assignments>
+            <TaskLabor resourceID='RES17'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES13'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='55' outlineLevel='1' name='Task 55'>
+          <Assignments>
+            <TaskLabor resourceID='RES18'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES12'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2755' name='Project T'>
+      <Tasks>
+        <Task taskID='17' outlineLevel='1' name='Task 17'>
+          <Assignments>
+            <TaskLabor resourceID='RES20'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES07'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='25' outlineLevel='1' name='Task 25'>
+          <Assignments>
+            <TaskLabor resourceID='RES09'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES20'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='36' outlineLevel='1' name='Task 36'>
+          <Assignments>
+            <TaskLabor resourceID='RES06'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES04'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='45' outlineLevel='1' name='Task 45'>
+          <Assignments>
+            <TaskLabor resourceID='RES16'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES05'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+        <Task taskID='56' outlineLevel='1' name='Task 56'>
+          <Assignments>
+            <TaskLabor resourceID='RES17'>
+              <CustomInformation />
+            </TaskLabor>
+            <TaskLabor resourceID='RES14'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+  </Projects>
+</NikuDataBus>
