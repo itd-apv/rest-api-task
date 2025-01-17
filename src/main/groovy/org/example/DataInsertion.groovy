@@ -22,7 +22,7 @@ class DataInsertion {
             println("Assignments Data: ${assignmentsData}")
 
             //Post projects and tasks to Clarity
-            postProjectsAndTasksToClarity(projectsData, tasksData)
+            //postProjectsAndTasksToClarity(projectsData, tasksData)
 
             // Get project names from CSV for filtering
             List<String> projectNamesFromCSV = projectsData.collect { it.name }
@@ -64,6 +64,10 @@ class DataInsertion {
         } catch (Exception e) {
             println("Error reading CSV files: ${e.message}")
             e.printStackTrace()
+        }finally {
+            // Close the database connection at the end of the process
+            ClarityService.closeDBConnection()
+            println("Database connection closed successfully.")
         }
     }
 

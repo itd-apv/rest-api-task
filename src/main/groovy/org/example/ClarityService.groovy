@@ -132,7 +132,6 @@ class ClarityService {
 
                                 println("Task creation response: ${taskResponse?.jsonMap()}")
 
-
                                 if (taskResponse) {
                                     // Mark task as posted by adding it to the set
                                     postedTaskNames.add(task.name)
@@ -251,8 +250,6 @@ class ClarityService {
                                     if (existingProjectId != projectId) {
                                         // Resource is already assigned to another project, but not the current one
                                         println("Resource ${resourceDetails.code} is already assigned to another project ${existingProjectId}, proceeding with adding to current project.")
-                                        // You can either skip or reassign based on your requirements
-                                        // Continue processing and allow adding resource to current project
                                     } else {
                                         println("Resource ${resourceDetails.code} is already assigned to project ${projectId}. Skipping.")
                                     }
@@ -291,6 +288,18 @@ class ClarityService {
         } else {
             println("Resource with code ${resourceCode} not found in the database.")
             return null
+        }
+    }
+    // Method to close the database connection
+    static void closeDBConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close()
+                println("Database connection closed successfully.")
+            }
+        } catch (Exception e) {
+            println("Caught exception while closing database connection: ${e.message}")
+            e.printStackTrace()
         }
     }
 }

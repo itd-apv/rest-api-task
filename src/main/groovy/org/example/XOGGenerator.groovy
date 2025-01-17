@@ -1,8 +1,6 @@
 package org.example
 
 import groovy.xml.MarkupBuilder
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -137,9 +135,6 @@ class XOGGenerator {
 
                                                             // Add TaskLabor inside the Assignments tag
                                                             xml.TaskLabor(
-                                                                    actualWork: assignment.actuals ?: "0",  // Ensure no null values
-                                                                    baselineWork: "0",  // Assuming baselineWork is "0" by default
-                                                                    remainingWork: assignment.etc ?: "0",  // Ensure no null values
                                                                     resourceID: resource.id) {
                                                                 xml.CustomInformation()
                                                             }

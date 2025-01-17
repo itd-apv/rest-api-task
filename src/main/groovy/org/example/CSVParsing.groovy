@@ -96,6 +96,7 @@ class CSVParsing extends BaseMethods {
         return true
     }
 
+
     private boolean isValidTask(Map row) {
         def taskId = row.id
         def taskName = row.name
@@ -110,6 +111,7 @@ class CSVParsing extends BaseMethods {
         }
         return true
     }
+
 
     private boolean isValidAssignment(Map row) {
         def assignmentId = row.id
@@ -127,6 +129,7 @@ class CSVParsing extends BaseMethods {
         return true
     }
 
+
     private boolean isValidResource(Map row) {
         def resourceId = row.id
         def resourceName = row.name
@@ -138,10 +141,12 @@ class CSVParsing extends BaseMethods {
         return true
     }
 
+
     List<Map> readProjectsCSV() {
         List<Map> projects = readCSV("projects.csv")
         return projects
     }
+
 
     List<Map> readTasksCSV() {
         def projects = readProjectsCSV()
@@ -152,6 +157,7 @@ class CSVParsing extends BaseMethods {
         def filteredTasks = tasks.findAll { it.project_id in validProjectIds }
         return filteredTasks
     }
+
 
     List<Map> readAssignmentsCSV() {
         def tasks = readTasksCSV()
@@ -167,6 +173,7 @@ class CSVParsing extends BaseMethods {
         }
         return filteredAssignments
     }
+
 
     List<Map> readResourcesCSV() {
         return readCSV("resources.csv")
